@@ -18,7 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/v1/login', \App\Http\Controllers\LoginController::class);
+
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/v1/logout', \App\Http\Controllers\LogoutController::class);
+
     Route::get('/v1/diffusions', \App\Http\Controllers\Diffusions\IndexController::class);
     Route::post('/v1/diffusions', \App\Http\Controllers\Diffusions\CreateController::class);
     Route::get('/v1/diffusions/{diffusion}', \App\Http\Controllers\Diffusions\DetailController::class);
