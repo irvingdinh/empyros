@@ -14,16 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('/v1/login', \App\Http\Controllers\LoginController::class);
+Route::post('/v1/login', \App\Http\Controllers\Api\LoginController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/v1/logout', \App\Http\Controllers\LogoutController::class);
+    Route::get('/v1/logout', \App\Http\Controllers\Api\LogoutController::class);
 
-    Route::get('/v1/diffusions', \App\Http\Controllers\Diffusions\IndexController::class);
-    Route::post('/v1/diffusions', \App\Http\Controllers\Diffusions\CreateController::class);
-    Route::get('/v1/diffusions/{diffusion}', \App\Http\Controllers\Diffusions\DetailController::class);
+    Route::get('/v1/diffusions', \App\Http\Controllers\Api\Diffusions\IndexController::class);
+    Route::post('/v1/diffusions', \App\Http\Controllers\Api\Diffusions\CreateController::class);
+    Route::get('/v1/diffusions/{diffusion}', \App\Http\Controllers\Api\Diffusions\DetailController::class);
 });
